@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Post;
+use Session;
 
 class AlunoController extends Controller
 {
@@ -13,7 +17,8 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        //
+        return $alunos = Aluno::orderBy('id')->toArray();
+        
     }
 
     /**
@@ -34,7 +39,23 @@ class AlunoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'nome' => 'required|max:128',
+            'matricula' => 'required|max:32',
+            'turma' => 'required|max:8' ,
+            'horario' => 'required|max:16',
+        ));
+
+        $aluno = new Aluno;
+
+        $aluno->nome= $request->nome;
+        $aluno->matricula= $request->matricula;
+        $aluno->turma= $request->turma;
+        $aluno->horario= $request->horario;
+
+        $aluno->save();
+
+        return Session::flash('success', 'Aluno armazenado com sucesso');
     }
 
     /**
@@ -45,7 +66,7 @@ class AlunoController extends Controller
      */
     public function show($id)
     {
-        //
+         return $aluno = Aluno::find($id);
     }
 
     /**
@@ -79,6 +100,9 @@ class AlunoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $aluno = Aluno::find($id);
+        $aluno-> delete();
+
+        return Session::flash('success', 'Aluno deletado com sucesso');
     }
 }

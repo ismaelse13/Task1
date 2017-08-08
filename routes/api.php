@@ -23,5 +23,8 @@ $api->version('v1', function (Router $api) {
         $api->get('/', 'MainController@index');
     });
     
+    Route::resource('/alunos', 'AlunoController');
+    Route::resource('/disciplinas', 'DisciplinasController');
+    Route::resource('/notas', 'NotasController');
 
 });

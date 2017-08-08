@@ -18,13 +18,13 @@ class CreateNotasTable extends Migration
             $table->integer('disciplina_id');
             $table->integer('aluno_id');
 
-            $table->float('prova1');
-            $table->float('prova2');
-            $table->float('prova3');
-            $table->float('prova4');
+            $table->float('prova_1');
+            $table->float('prova_2');
+            $table->float('prova_3');
+            $table->float('prova_4');
 
-            $table->float('provaRec');
-            $table->float('mediaFinal');
+            $table->float('prova_rec');
+            $table->float('media_final');
             $table->timestamps();
         });
     }

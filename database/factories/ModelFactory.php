@@ -27,22 +27,15 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Nota::class, function (Faker\Generator $faker) {
 
     return [
-        'matricula' => $faker->randomNumber(5),
-        '1_av'=> $faker->randomFloat(2, 0, 10),
-        '2_av' => $faker->randomFloat(2, 0, 10),
-        '3_av' => $faker->randomFloat(2, 0, 10),
-        '4_av' => $faker->randomFloat(2, 0, 10),
+        'disciplina_id' => $faker->randomNumber(5),
+        'aluno_id' => $faker->randomNumber(5),
 
-        'm1_1s'=> $faker->randomFloat(2, 0, 10),
-        'r_1s'=> $faker->randomFloat(2, 0, 10),
-        'm2_1s'=> $faker->randomFloat(2, 0, 10),
-        
-        'm1_2s'=> $faker->randomFloat(2, 0, 10),
-        'r_2s'=> $faker->randomFloat(2, 0, 10),
-        'm2_2s'=> $faker->randomFloat(2, 0, 10),
+        'prova_1'=> $faker->randomFloat(2, 0, 10),
+        'prova_2' => $faker->randomFloat(2, 0, 10),
+        'prova_3' => $faker->randomFloat(2, 0, 10),
+        'prova_4' => $faker->randomFloat(2, 0, 10),
 
-        'm_a'=> $faker->randomFloat(2, 0, 10),
-        'p_f'=> $faker->randomFloat(2, 0, 10),
-        'm_f'=> $faker->randomFloat(2, 0, 10)
+        'prova_rec' => $faker->randomFloat(2, 0, 10),
+        'media_final' => $faker->randomFloat(2, 0, 10),
     ];
 });

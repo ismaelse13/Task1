@@ -13,7 +13,7 @@ class DisciplinasController extends Controller
      */
     public function index()
     {
-        //
+         return $disciplinas = Disciplina::orderBy('id')->toArray();
     }
 
     /**
@@ -23,7 +23,7 @@ class DisciplinasController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -34,7 +34,16 @@ class DisciplinasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'nome' => 'required|max:128',
+            'professor' => 'required|max:128',
+        ));
+
+        $disciplina = new Disciplina;
+
+        $disciplina->nome = $request->nome;
+        $disciplina->professor = $request->professor;
+        //$disciplina->serie_id = $request->serie_id;
     }
 
     /**
@@ -45,7 +54,7 @@ class DisciplinasController extends Controller
      */
     public function show($id)
     {
-        //
+        return $disciplina = Disciplina::find(id);
     }
 
     /**
@@ -79,6 +88,9 @@ class DisciplinasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $aluno = Aluno::find($id);
+        $aluno->delete();
+
+        return Session::flash('success', 'Aluno deletado com sucesso');
     }
 }

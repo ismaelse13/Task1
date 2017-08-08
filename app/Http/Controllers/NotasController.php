@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use \App\Nota;
+use \App\Aluno;
 
 class NotasController extends Controller
 {
@@ -13,7 +17,7 @@ class NotasController extends Controller
      */
     public function index()
     {
-        //
+        return $notas = Nota::orderBy('id')->toArray();
     }
 
     /**
@@ -23,7 +27,7 @@ class NotasController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -34,7 +38,33 @@ class NotasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $this->validate($request, array(
+            'displina_id' => 'required|max:128',
+            'aluno_id' => 'required|max:128',
+
+            'prova_1' => 'required|max:32',
+            'prova_2' => 'required|max:32',
+            'prova_3' => 'required|max:32',
+            'prova_4' => 'required|max:32',
+            'prova_rec' => 'required|max:32',
+            'media_final' => 'required|max:32',
+            ));
+
+            $notas = new Nota;
+
+            $notas->disciplina_id= $request->disciplina_id;
+            $notas->aluno_id= $request->aluno_id;
+            $notas->prova_1= $request->prova_1;
+            $notas->prova_2= $request->prova_2;
+            $notas->prova_3= $request->prova_3;
+            $notas->prova_4= $request->prova_4;
+
+            $notas->prova_rec= $request->prova_rec;
+            $notas->media_final= $request->media_final;
+
+            $notas->save();
+
+        return Session::flash('success', 'Notas armazenadas com sucesso');
     }
 
     /**
@@ -45,7 +75,7 @@ class NotasController extends Controller
      */
     public function show($id)
     {
-        //
+         return $notas = Nota::find($id);
     }
 
     /**
@@ -79,6 +109,9 @@ class NotasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $notas = Nota::find($id);
+        $notas-> delete();
+
+        return Session::flash('success', 'Notas com sucesso');
     }
 }

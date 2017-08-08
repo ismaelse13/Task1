@@ -18,7 +18,7 @@ class CreateAlunosTable extends Migration
             $table->integer('matricula');
             $table->string('nome');
             $table->string('turma');
-            $table->integer('turma_id');
+            //$table->integer('turma_id');
             $table->string('horario');
             $table->rememberToken();
             $table->timestamps();
