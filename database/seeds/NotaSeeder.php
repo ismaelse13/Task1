@@ -24,7 +24,7 @@ class NotaSeeder extends Seeder
                 $faker = Faker::create();
 
                 Nota::create([
-                    'disciplina_id' => $disciplina->id,
+                    'disciplina_id' => $faker->randomDigitNotNull,
                     'aluno_id' => $aluno->id,
                     'prova_1' => $faker->randomFloat(1, 1, 10),
                     'prova_2' => $faker->randomFloat(1, 1, 10),
