@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Disciplina;
+use Session;
 
 class DisciplinasController extends Controller
 {
@@ -13,7 +15,7 @@ class DisciplinasController extends Controller
      */
     public function index()
     {
-         return $disciplinas = Disciplina::orderBy('id')->toArray();
+         return Disciplina::orderBy('id')->get()->toArray();
     }
 
     /**
@@ -54,7 +56,7 @@ class DisciplinasController extends Controller
      */
     public function show($id)
     {
-        return $disciplina = Disciplina::find(id);
+        return $disciplina = Disciplina::find($id);
     }
 
     /**
@@ -88,8 +90,8 @@ class DisciplinasController extends Controller
      */
     public function destroy($id)
     {
-        $aluno = Aluno::find($id);
-        $aluno->delete();
+        $disciplina = Disciplina::find($id);
+        $disciplina-> delete();
 
         return Session::flash('success', 'Aluno deletado com sucesso');
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Session;
 use \App\Nota;
 use \App\Aluno;
 
@@ -17,7 +18,7 @@ class NotasController extends Controller
      */
     public function index()
     {
-        return $notas = Nota::orderBy('id')->toArray();
+        return  Nota::orderBy('id')->get()->toArray();
     }
 
     /**
@@ -112,6 +113,6 @@ class NotasController extends Controller
         $notas = Nota::find($id);
         $notas-> delete();
 
-        return Session::flash('success', 'Notas com sucesso');
+        return Session::flash('success', 'Notas deletadas com sucesso');
     }
 }

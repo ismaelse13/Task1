@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use JWTAuth;
 use Dingo\Api\Routing\Helpers;
+use Session;
 
 class Controller extends BaseController
 {
