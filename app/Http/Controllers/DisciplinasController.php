@@ -56,7 +56,7 @@ class DisciplinasController extends Controller
      */
     public function show($id)
     {
-        return $disciplina = Disciplina::find($id);
+        return $disciplina = Disciplina::findOrFail($id);
     }
 
     /**
@@ -79,7 +79,11 @@ class DisciplinasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $disciplina = Disciplina::findOrFail($id);
+
+        $dados = $request->all();
+
+        $disciplina->update($dados);
     }
 
     /**
@@ -90,9 +94,7 @@ class DisciplinasController extends Controller
      */
     public function destroy($id)
     {
-        $disciplina = Disciplina::find($id);
+        $disciplina = Disciplina::findOrFail($id);
         $disciplina-> delete();
-
-        return Session::flash('success', 'Aluno deletado com sucesso');
     }
 }

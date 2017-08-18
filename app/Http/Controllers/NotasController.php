@@ -65,7 +65,6 @@ class NotasController extends Controller
 
             $notas->save();
 
-        return Session::flash('success', 'Notas armazenadas com sucesso');
     }
 
     /**
@@ -76,7 +75,7 @@ class NotasController extends Controller
      */
     public function show($id)
     {
-         return $notas = Nota::find($id);
+         return $notas = Nota::findOrFail($id);
     }
 
     /**
@@ -99,7 +98,11 @@ class NotasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $notas = Nota::findOrFail($id);
+
+        $dados = $request->all();
+
+        $notas->update($dados);
     }
 
     /**
@@ -110,9 +113,8 @@ class NotasController extends Controller
      */
     public function destroy($id)
     {
-        $notas = Nota::find($id);
+        $notas = Nota::findOrFail($id);
         $notas-> delete();
 
-        return Session::flash('success', 'Notas deletadas com sucesso');
     }
 }

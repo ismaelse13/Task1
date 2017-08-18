@@ -56,7 +56,6 @@ class AlunoController extends Controller
 
         $aluno->save();
 
-        return Session::flash('success', 'Aluno armazenado com sucesso');
     }
 
     /**
@@ -67,7 +66,7 @@ class AlunoController extends Controller
      */
     public function show($id)
     {
-         return $aluno = Aluno::find($id);
+         return $aluno = Aluno::findOrFail($id);
     }
 
     /**
@@ -90,7 +89,12 @@ class AlunoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $aluno = Aluno::findOrFail($id);
+
+        $dados = $request->all();
+
+        $aluno->update($dados);
+
     }
 
     /**
@@ -101,9 +105,7 @@ class AlunoController extends Controller
      */
     public function destroy($id)
     {
-        $aluno = Aluno::find($id);
+        $aluno = Aluno::findOrFail($id);
         $aluno-> delete();
-
-        return Session::flash('success', 'Aluno deletado com sucesso');
     }
 }
